@@ -1,0 +1,353 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { BookOpen, GraduationCap, UploadCloud, Search, Sparkles, ShieldCheck, Star, ArrowRight, Coins, Layers } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+// Simple helper components for layout consistency
+const Section = ({ id, children, className = "" }) => (
+  <section id={id} className={`w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>{children}</section>
+);
+
+const Feature = ({ Icon, title, desc }) => (
+  <Card className="h-full rounded-2xl shadow-md">
+    <CardHeader className="pb-2">
+      <div className="flex items-center gap-3">
+        <div className="p-3 rounded-2xl bg-muted">
+          <Icon className="h-6 w-6" />
+        </div>
+        <CardTitle className="text-lg">{title}</CardTitle>
+      </div>
+    </CardHeader>
+    <CardContent className="pt-0 text-muted-foreground">{desc}</CardContent>
+  </Card>
+);
+
+export default function StudySwapHome() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
+      {/* NAVBAR */}
+      <nav className="sticky top-0 z-30 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b">
+        <Section className="flex items-center justify-between py-3">
+          <div className="flex items-center gap-2">
+            <div className="h-9 w-9 grid place-items-center rounded-xl bg-primary/10">
+              <Layers className="h-5 w-5" />
+            </div>
+            <span className="font-semibold tracking-tight text-xl">StudySwap</span>
+          </div>
+          <div className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#features" className="hover:underline">Features</a>
+            <a href="#how" className="hover:underline">How it works</a>
+            <a href="#courses" className="hover:underline">Popular courses</a>
+            <a href="#pricing" className="hover:underline">Pricing</a>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" className="rounded-xl">Log in</Button>
+            <Button className="rounded-2xl">Get started</Button>
+          </div>
+        </Section>
+      </nav>
+
+      {/* HERO */}
+      <header className="relative overflow-hidden">
+        <Section className="grid md:grid-cols-2 gap-10 items-center py-14 md:py-24">
+          <div>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-4xl sm:text-5xl font-extrabold tracking-tight"
+            >
+              Share notes. Earn tokens. <span className="text-primary">Ace your courses.</span>
+            </motion.h1>
+            <p className="mt-4 text-lg text-muted-foreground max-w-prose">
+              StudySwap is a peer-to-peer marketplace for study materials. Upload your notes to earn tokens, and trade them for high‑quality resources from classmates across campuses.
+            </p>
+
+            <div className="mt-6 grid gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex-1 flex items-center gap-2 rounded-2xl border bg-background pr-2">
+                  <Search className="ml-3 h-5 w-5 text-muted-foreground" />
+                  <Input placeholder="Search courses, topics, or universities" className="border-0 focus-visible:ring-0" />
+                </div>
+                <Button className="rounded-2xl px-6">Find resources</Button>
+              </div>
+
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <ShieldCheck className="h-4 w-4" />
+                <span>Quality‑rated by peers • AI‑cleaned summaries • Always yours to re‑download</span>
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              <Badge variant="secondary" className="rounded-xl">Econ 200</Badge>
+              <Badge variant="secondary" className="rounded-xl">MIS 111‑L</Badge>
+              <Badge variant="secondary" className="rounded-xl">WFSC 140</Badge>
+              <Badge variant="secondary" className="rounded-xl">Calculus I</Badge>
+              <Badge variant="secondary" className="rounded-xl">Intro to Biology</Badge>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="grid gap-4"
+          >
+            <Card className="rounded-2xl shadow-xl">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <UploadCloud className="h-5 w-5" /> Upload notes → Get tokens
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                Drag & drop your lecture notes. We auto‑clean formatting, extract key points, and generate flashcards.
+                <div className="mt-4 grid grid-cols-3 gap-3">
+                  {["Raw Notes.pdf", "Lecture 7.docx", "Quiz Review.txt"].map((f) => (
+                    <div key={f} className="rounded-xl border p-3">
+                      <div className="text-xs font-medium">{f}</div>
+                      <div className="text-xs text-muted-foreground mt-1">Processed ✓</div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-2xl shadow-xl">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Sparkles className="h-5 w-5" /> AI‑generated study pack
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                We produce a clean summary, a quiz, and flashcards you can download or study in‑app.
+                <div className="mt-3 grid grid-cols-3 gap-3">
+                  {["Summary", "Flashcards", "Quiz"].map((t) => (
+                    <div key={t} className="rounded-xl border p-3 text-center">
+                      <div className="text-xs font-medium">{t}</div>
+                      <div className="text-xs text-muted-foreground mt-1">Ready</div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </Section>
+      </header>
+
+      {/* METRICS / SOCIAL PROOF */}
+      <Section className="py-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            ["120k+", "resources shared"],
+            ["58k+", "active students"],
+            ["2.4M+", "flashcards generated"],
+            ["4.8/5", "average resource rating"],
+          ].map(([stat, label]) => (
+            <Card key={label} className="rounded-2xl">
+              <CardContent className="py-6 text-center">
+                <div className="text-2xl font-semibold">{stat}</div>
+                <div className="text-sm text-muted-foreground mt-1">{label}</div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* FEATURES */}
+      <Section id="features" className="py-6 md:py-14">
+        <div className="max-w-2xl">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Why students choose StudySwap</h2>
+          <p className="mt-2 text-muted-foreground">A fair, contribution‑first exchange that turns your hard‑won notes into real study power.</p>
+        </div>
+        <div className="mt-6 grid md:grid-cols-3 gap-4">
+          <Feature Icon={Coins} title="Token economy" desc="Earn tokens by uploading quality resources. Spend tokens to access others’ materials. Prevents leeching and rewards contributors." />
+          <Feature Icon={Sparkles} title="AI clean‑up & packs" desc="We auto‑format messy notes, summarize key ideas, and generate flashcards & quizzes to jump‑start your review." />
+          <Feature Icon={ShieldCheck} title="Quality ratings" desc="Peer ratings and course‑specific badges help you spot accurate, exam‑ready content fast." />
+        </div>
+      </Section>
+
+      {/* HOW IT WORKS */}
+      <Section id="how" className="py-6 md:py-14">
+        <div className="max-w-2xl">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">How it works</h2>
+          <p className="mt-2 text-muted-foreground">Three simple steps to faster, smarter studying.</p>
+        </div>
+        <div className="mt-6 grid md:grid-cols-3 gap-4">
+          <Card className="rounded-2xl">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-3">
+                <div className="p-3 rounded-2xl bg-muted"><UploadCloud className="h-5 w-5" /></div>
+                <div>
+                  <div className="font-medium">1) Upload</div>
+                  <p className="text-sm text-muted-foreground mt-1">Drop in notes, study guides, or practice sets. Add your course & professor for better matching.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="rounded-2xl">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-3">
+                <div className="p-3 rounded-2xl bg-muted"><Sparkles className="h-5 w-5" /></div>
+                <div>
+                  <div className="font-medium">2) Get cleaned & rated</div>
+                  <p className="text-sm text-muted-foreground mt-1">We generate a study pack; peers rate accuracy & helpfulness so the best rises to the top.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="rounded-2xl">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-3">
+                <div className="p-3 rounded-2xl bg-muted"><Search className="h-5 w-5" /></div>
+                <div>
+                  <div className="font-medium">3) Trade & study</div>
+                  <p className="text-sm text-muted-foreground mt-1">Use tokens to access top resources for your exact course and study with built‑in tools.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </Section>
+
+      {/* POPULAR COURSES */}
+      <Section id="courses" className="py-6 md:py-14">
+        <div className="max-w-2xl">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Popular right now</h2>
+          <p className="mt-2 text-muted-foreground">What students are trading this week.</p>
+        </div>
+        <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { course: "ECON 200 – Principles of Economics", uni: "University of Arizona", rating: 4.9, items: 128 },
+            { course: "MIS 111‑L – Excel & Spreadsheets", uni: "University of Arizona", rating: 4.8, items: 96 },
+            { course: "WFSC 140 – Wildlife at the Movies", uni: "University of Arizona", rating: 4.7, items: 52 },
+            { course: "MATH 122A – Calculus I", uni: "Multiple campuses", rating: 4.6, items: 210 },
+            { course: "BIO 181 – Intro Biology", uni: "Multiple campuses", rating: 4.6, items: 175 },
+            { course: "ACCT 200 – Intro to Accounting", uni: "Multiple campuses", rating: 4.5, items: 141 },
+          ].map((c) => (
+            <Card key={c.course} className="rounded-2xl hover:shadow-lg transition-shadow">
+              <CardContent className="pt-6">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <div className="font-medium leading-tight">{c.course}</div>
+                    <div className="text-sm text-muted-foreground">{c.uni}</div>
+                  </div>
+                  <div className="flex items-center gap-1 text-sm"><Star className="h-4 w-4" /> {c.rating}</div>
+                </div>
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="text-sm text-muted-foreground">{c.items} resources</div>
+                  <Button variant="secondary" className="rounded-xl">View</Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* PRICING */}
+      <Section id="pricing" className="py-6 md:py-14">
+        <div className="max-w-2xl">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Pricing that rewards contributors</h2>
+          <p className="mt-2 text-muted-foreground">Use StudySwap free with tokens, or go premium for power features.</p>
+        </div>
+        <div className="mt-6 grid md:grid-cols-3 gap-4">
+          {[
+            {
+              name: "Free",
+              price: "$0",
+              perks: ["Earn/spend tokens", "Unlimited uploads", "AI clean‑up (basic)", "Peer ratings"],
+              cta: "Start free",
+            },
+            {
+              name: "Plus",
+              price: "$6/mo",
+              perks: ["Everything in Free", "Monthly bonus tokens", "AI flashcards & quizzes", "Ad‑free"],
+              cta: "Go Plus",
+            },
+            {
+              name: "Pro",
+              price: "$12/mo",
+              perks: ["Everything in Plus", "Cross‑campus discovery", "Priority processing", "Download bundles"],
+              cta: "Upgrade",
+            },
+          ].map((tier, i) => (
+            <Card key={tier.name} className={`rounded-2xl ${i===1 ? "border-primary" : ""}`}>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  {tier.name}
+                  {i===1 && <Badge className="rounded-xl">Popular</Badge>}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-semibold">{tier.price}</div>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {tier.perks.map((p) => (<li key={p}>• {p}</li>))}
+                </ul>
+                <Button className="mt-6 w-full rounded-2xl">{tier.cta}</Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* CTA STRIP */}
+      <div className="py-10">
+        <Section>
+          <div className="rounded-3xl p-8 md:p-12 bg-primary/10 border flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight">Turn your notes into tokens today</h3>
+              <p className="text-muted-foreground mt-1">Join thousands of students trading high‑quality study materials.</p>
+            </div>
+            <Button className="rounded-2xl px-6">Create your free account</Button>
+          </div>
+        </Section>
+      </div>
+
+      {/* FOOTER */}
+      <footer className="border-t py-10">
+        <Section className="grid md:grid-cols-4 gap-8">
+          <div>
+            <div className="flex items-center gap-2">
+              <div className="h-9 w-9 grid place-items-center rounded-xl bg-primary/10">
+                <Layers className="h-5 w-5" />
+              </div>
+              <span className="font-semibold tracking-tight text-xl">StudySwap</span>
+            </div>
+            <p className="text-sm text-muted-foreground mt-3 max-w-sm">
+              A peer‑to‑peer exchange for study resources. Built for contributors, powered by AI.
+            </p>
+          </div>
+          <div>
+            <div className="font-medium mb-3">Product</div>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><a href="#features" className="hover:underline">Features</a></li>
+              <li><a href="#how" className="hover:underline">How it works</a></li>
+              <li><a href="#pricing" className="hover:underline">Pricing</a></li>
+            </ul>
+          </div>
+          <div>
+            <div className="font-medium mb-3">Resources</div>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>Help Center</li>
+              <li>Community</li>
+              <li>University partners</li>
+            </ul>
+          </div>
+          <div>
+            <div className="font-medium mb-3">Legal</div>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>Terms</li>
+              <li>Privacy</li>
+              <li>Honor code</li>
+            </ul>
+          </div>
+        </Section>
+        <Section className="pt-6">
+          <div className="text-xs text-muted-foreground">© {new Date().getFullYear()} StudySwap. All rights reserved.</div>
+        </Section>
+      </footer>
+    </div>
+  );
+}
